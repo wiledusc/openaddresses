@@ -1,2 +1,3 @@
 download:
-	cat urls.txt | parallel -j 2 ./download.sh
+	mkdir data || true
+	cd data && cat ../urls.txt | parallel -j 4 ../download.sh {}
