@@ -1,5 +1,6 @@
 var casper = require('casper').create();
 casper.start();
+casper.options.waitTimeout = 20000;
 casper.userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36');
 var opts = {
     method: 'get',
