@@ -4,8 +4,8 @@ mkdir csv
 mkdir inegi
 cd inegi
 
-#mapbox auth production XXXXXX
-#aws s3 cp s3://gis-data/inegi/inegi_data.zip
+# mapbox auth production XXXXXX
+# aws s3 cp s3://gis-data/inegi/inegi_data.zip
 
 unzip inegi_data.zip;
 
@@ -22,11 +22,9 @@ for f in */*T.shp; do
     out_name=$(basename $f .shp)
     out_file='../csv/'$out_name'.csv';
     ogr2ogr -t_srs EPSG:4326 -f CSV $out_file $f -lco GEOMETRY=AS_XY;
-    #iconv -f iso-8859-1 -t utf8 $out_file > $out_file
-    #iconv -f binary -t utf8 $out_file > $out_file
+    iconv -f iso-8859-1 -t utf8 $out_file > $out_file'.temp'
     echo $counter' done'
 done;
 cd ..
 
-#csvstack csv/* > mx.csv
-tail -n +2 csv/* | cat > mx.csv
+csvstack csv/*.temp > mx.csv
