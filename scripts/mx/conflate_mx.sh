@@ -1,3 +1,4 @@
+#! bin/bash
 # sudo pip install csvkit
 mkdir csv
 mkdir ingegi
@@ -15,6 +16,7 @@ done;
 rm *.zip;
 
 counter=0
+
 for f in *; do
     counter=$((counter+1))
     output='../csv/'$f'.csv';
