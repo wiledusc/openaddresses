@@ -19,7 +19,8 @@ for f in *; do
 	counter=$((counter+1))
 	output='../csv/'$f'.csv';
 	ogr2ogr -t_srs EPSG:4326 -f CSV $output $f/*T.shp -lco GEOMETRY=AS_XY;
+	iconv -f 'iso-8859-1' -t utf8 $output > $output
 	echo $counter' done'
 done;
 
-# csvstack ../csv/* > mx.csv # needs utf-8 and the csvs apparently aren't??? 
+csvstack ../csv/* > mx.csv
