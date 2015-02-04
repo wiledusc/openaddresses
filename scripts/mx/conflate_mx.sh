@@ -1,8 +1,8 @@
 #! bin/bash
 # sudo pip install csvkit
-mkdir csv
-mkdir ingegi
-cd ingegi
+# mkdir csv
+# mkdir inegi
+# cd inegi
 
 # mapbox auth production XXXXXX
 # aws s3 cp s3://gis-data/inegi/inegi_data.zip
@@ -13,16 +13,16 @@ for f in inegi_data/*.zip; do
     unzip $f;
 done;
 
-rm *.zip;
+rm inegi_data/*.zip;
 
 counter=0
 
-for f in *; do
+for f in inegi_data/*; do
     counter=$((counter+1))
-    output='../csv/'$f'.csv';
+    output='/csv/'$f'.csv';
     ogr2ogr -t_srs EPSG:4326 -f CSV $output $f/*T.shp -lco GEOMETRY=AS_XY;
     iconv -f 'iso-8859-1' -t utf8 $output > $output
     echo $counter' done'
 done;
 
-csvstack ../csv/* > mx.csv
+csvstack csv/* > mx.csv
