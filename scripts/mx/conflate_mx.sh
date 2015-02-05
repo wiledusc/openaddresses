@@ -1,8 +1,8 @@
 #! bin/bash
 # sudo pip install csvkit
-mkdir csv
-mkdir inegi
+#mkdir inegi
 cd inegi
+#mkdir csv
 
 # mapbox auth production XXXXXX
 # aws s3 cp s3://gis-data/inegi/inegi_data.zip
