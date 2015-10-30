@@ -1,0 +1,34 @@
+{
+    "coverage": {
+        "US Census": {
+            "geoid": "12101",
+            "name": "Pasco County",
+            "state": "Florida"
+        },
+        "country": "us",
+        "state": "fl",
+        "county": "Pasco"
+    },
+    "website": "http://downloads.pascogov.com/",
+    "data": "ftp://ftp.pascogov.com/pub/arcshape/pascopcl.zip",
+    "license": {"text" :"Indemnification"},
+    "type": "ftp",
+    "compression": "zip",
+    "conform": {
+        "type": "shapefile-polygon",
+        "id": "PARCEL",
+        "number": {
+            "function": "regexp",
+            "field": "PHYSADR1",
+            "pattern": "^([0-9]+)"
+        },
+        "street": {
+            "function": "regexp",
+            "field": "PHYSADR1",
+            "pattern": "^(?:[0-9]+ )(.*)",
+            "replace": "$1"
+        },
+        "city": "PHYS_CITY",
+        "postcode": "PHYS_ZIP"
+    }
+}
