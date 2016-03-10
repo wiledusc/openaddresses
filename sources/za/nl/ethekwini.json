@@ -8,7 +8,7 @@
     "website": "http://citymaps.durban.gov.za/internetwebsite/index.html",
     "license": "http://citymaps.durban.gov.za/GISMetaData/Files/Metadata/Cadastral/Approved_Cadastre/addresspoint.htm",
     "skip": false,
-    "year": "2014",
+    "year": 2014,
     "type": "http",
     "compression": "zip",
     "conform": {

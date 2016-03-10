@@ -1,25 +1,17 @@
 var test = require('tape').test,
     glob = require('glob'),
     fs = require('fs'),
-    request = require('request');
-    validator = require('validator');
+    request = require('request'),
+    Validate = require('jsonschema').Validator;
+    validator = require('validator'),
     versionCurrent = require('../package.json').version.split('.');
-
+   
+    var v = new Validate();
+ 
+    var schema = require('./schema.json');
     var manifest = glob.sync('sources/**/*.json');
     var index = 0;
 
-//Ensure tests on branch are current with master
-request.get('https://raw.githubusercontent.com/openaddresses/openaddresses/master/package.json', function(err, res, masterPackage) {
-    var versionMaster = JSON.parse(masterPackage).version.split('.');
-
-    for (var i = 0; i < 3; i++) {
-        if (versionMaster[i] > versionCurrent[i]) {
-            console.log("Branch outdated! - Please pull new changes from openaddresses/openaddresses:master");
-            process.exit(1);
-        }
-    }
-    checkSource(index);
-});
 
 function validateJSON(body) {
     try {
@@ -30,19 +22,30 @@ function validateJSON(body) {
     }
 }
 
+checkSource(index);
+
 function checkSource(i){
     var source = manifest[i];
 
-    if (i == manifest.lenght-1 || !source) {process.exit(0);}
+    if (i == manifest.length - 1 || !source) {
+        process.exit(0);
+    }
 
     test(source, function(t) {
         var raw = fs.readFileSync(source, 'utf8');
         var data = validateJSON(raw);
-
         t.ok(data, "Data should be valid JSON");
 
-        if (data) {
-            if (data.skip) {t.pass("WARN - Skip Flag Detected");}
+        if (data.skip) {
+            t.pass("WARN - Skip Flag Detected");
+        } else {
+            var res = v.validate(data, schema);
+            if (res.errors.length > 0) {
+                console.log(res.errors)
+            }
+        }
+
+        if (data === 'fake') {
 
             // Ensure people don't make up tags
             legalTags = [
