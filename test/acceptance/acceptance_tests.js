@@ -77,7 +77,7 @@ glob.sync('sources/**/*.json').forEach((filename) => {
             const actual_value = getActualValue(input_value.match(regexp), replace);
 
             t.equals(actual_value, expected_value,
-                `${field} field: expected '${expected_value}' from input '${input_value}'`);
+                `${field} field: expected '${expected_value}' from input '${input_value}', actual: '${actual_value}'`);
 
           }
 
