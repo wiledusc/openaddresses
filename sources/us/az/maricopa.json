@@ -9,8 +9,9 @@
         "state": "az",
         "county": "Maricopa"
     },
-    "data": "http://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcel_Numbers/MapServer/0",
-    "type": "ESRI",
+    "data": "https://s3.amazonaws.com/data.openaddresses.io/cache/uploads/trescube/a1b699/us-az-maricopa.geojson.zip",
+    "type": "http",
+    "compression": "zip",
     "conform": {
         "type": "geojson",
         "number": "PHYSICAL_STREET_NUM",
@@ -20,14 +21,10 @@
             "PHYSICAL_STREET_TYPE",
             "PHYSICAL_STREET_POSTDIR"
         ],
-        "unit": {
-            "function": "join",
-            "fields": [
-                "PHYSICAL_SUITE",
-                "PHYSICAL_STREET_SUFFIX"
-            ],
-            "separator": ""
-        },        
+        "unit": [
+            "PHYSICAL_SUITE",
+            "PHYSICAL_STREET_SUFFIX"
+        ],
         "postcode": "PHYSICAL_ZIP",
         "city": "PHYSICAL_CITY"
     }
