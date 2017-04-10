@@ -9,7 +9,8 @@
         "state": "az",
         "county": "Maricopa"
     },
-    "data": "https://s3.amazonaws.com/data.openaddresses.io/cache/uploads/trescube/a1b699/us-az-maricopa.geojson.zip",
+    "data": "https://s3.amazonaws.com/data.openaddresses.io/cache/uploads/trescube/1635a2/us-az-maricopa.geojson.zip",
+    "note": "old: https://s3.amazonaws.com/data.openaddresses.io/cache/uploads/trescube/a1b699/us-az-maricopa.geojson.zip",
     "type": "http",
     "compression": "zip",
     "conform": {
